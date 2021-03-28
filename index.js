@@ -1,7 +1,6 @@
 const colors = [
 	'#b28c66',
 	'#b26666',
-	'#316931',
 	'#66b28c',
 	'#668cb2',
 	'#b266b2',
@@ -23,9 +22,13 @@ input.addEventListener('keydown', (e) => {
 	}
 });
 
-let id = 2;
+let id = 1;
 
 const wrapper = document.querySelector('.card-wrapper');
+
+document.querySelector('#card-0').addEventListener('click', (e) => {
+	document.querySelector('#card-0 .card-body').classList.toggle('d-none');
+});
 
 const createEl = () => {
 	if (input.value.trim().length === 0) {
