@@ -23,7 +23,7 @@ input.addEventListener('keydown', (e) => {
 	}
 });
 
-let id = 0;
+let id = 2;
 
 const wrapper = document.querySelector('.card-wrapper');
 
