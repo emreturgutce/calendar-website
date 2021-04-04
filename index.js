@@ -1,3 +1,99 @@
+let now = moment();
+const days = [1, 2, 3, 4, 5, 6, 0];
+
+const myTable = document.querySelector('#my-table');
+const monthName = document.querySelector('#month-name');
+const myDateDay = document.querySelector('.my-date-day');
+const myDateDate = document.querySelector('.my-date-date');
+const prev = document.querySelector('.prev');
+const next = document.querySelector('.next');
+const myYear = document.querySelector('.my-year');
+
+const monthStrg = now.locale('tr').format('MMMM');
+const dayNumberStr = now.locale('tr').format('DD');
+const dayStr = now.locale('tr').format('dddd');
+
+myDateDay.innerHTML = dayStr;
+myDateDate.innerHTML = `${dayNumberStr} ${monthStrg}`;
+
+prev.addEventListener('click', () => {
+	now = now.clone().subtract(1, 'month');
+	month();
+});
+
+next.addEventListener('click', () => {
+	now = now.clone().add(1, 'month');
+	month();
+});
+
+month();
+
+function month() {
+	const monthStr = now.locale('tr').format('MMMM');
+	const previousMonth = now.clone().subtract(1, 'months').daysInMonth();
+	const dayInMonth = now.daysInMonth();
+	const startOfMonth = now.clone().startOf('month').format('e');
+
+	let myMonth = '';
+	let counter = 1;
+	let nextCounter = 1;
+
+	for (let i = 0; i < 6; i++) {
+		let myRow = '<tr>';
+		for (let j = 0; j < 7; j++) {
+			if (i === 0 && startOfMonth > j) {
+				myRow += `<td><span class="daysOfPreviousMonth">${
+					previousMonth - (startOfMonth - 1) + j
+				}</span></td>`;
+			} else if (dayInMonth < counter) {
+				myRow += `<td><span class="daysOfNextMonth">${nextCounter}</span></td>`;
+				nextCounter++;
+			} else {
+				myRow += `<td><span class="daysOfMonth" style="color: #000">${counter}</span></td>`;
+				counter++;
+			}
+		}
+		myRow += '</tr>';
+		myMonth += myRow;
+	}
+
+	myTable.innerHTML = myMonth;
+	monthName.innerHTML = monthStr;
+	myYear.innerHTML = now.format('YYYY');
+
+	document.querySelectorAll('.daysOfMonth').forEach((el) =>
+		el.addEventListener('click', (e) => {
+			const clickedDay = +e.target.innerHTML;
+			const nowDay = +now.format('DD');
+
+			myDateDay.innerHTML = now.add(clickedDay - nowDay, 'days').format('dddd');
+			myDateDate.innerHTML = `${e.target.innerHTML} ${monthStr}`;
+		}),
+	);
+
+	document.querySelectorAll('.daysOfPreviousMonth').forEach((el) =>
+		el.addEventListener('click', (e) => {
+			prev.click();
+			const clickedDay = +e.target.innerHTML;
+			const nowDay = +now.format('DD');
+
+			myDateDay.innerHTML = now.add(clickedDay - nowDay, 'days').format('dddd');
+			myDateDate.innerHTML = `${e.target.innerHTML} ${now.locale('tr').format('MMMM')}`;
+		}),
+	);
+
+	document.querySelectorAll('.daysOfNextMonth').forEach((el) =>
+		el.addEventListener('click', (e) => {
+			next.click();
+			const clickedDay = +e.target.innerHTML;
+			const nowDay = +now.format('DD');
+
+			myDateDay.innerHTML = now.add(clickedDay - nowDay, 'days').format('dddd');
+			myDateDate.innerHTML = `${e.target.innerHTML} ${now.locale('tr').format('MMMM')}`;
+		}),
+	);
+}
+
 const colors = [
 	'#b28c66',
 	'#b26666',

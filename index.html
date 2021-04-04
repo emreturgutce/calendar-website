@@ -18,16 +18,32 @@
 			rel="stylesheet"
 			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 		/>
-		<title>Document</title>
+		<title>Calendar</title>
 	</head>
 	<body>
 		<div class="my-container">
 			<div class="my-left">
+				<div
+					style="
+						align-self: flex-end;
+						margin-right: 3rem;
+						margin-bottom: 2rem;
+					"
+				>
+					<h5
+						style="
+							text-align: center;
+							font-size: 2rem;
+							color: #747978;
+						"
+						class="my-year"
+					></h5>
+				</div>
 				<div class="my-month">
 					<h5>
-						<i class="fas fa-chevron-left"></i>
-						Mart
-						<i class="fas fa-chevron-right"></i>
+						<i class="fas fa-chevron-left prev"></i>
+						<span id="month-name"></span>
+						<i class="fas fa-chevron-right next"></i>
 					</h5>
 				</div>
 				<br />
@@ -44,55 +60,16 @@
 								<th>Pa</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td><span>1</span></td>
-								<td><span>2</span></td>
-								<td><span>3</span></td>
-								<td><span>4</span></td>
-								<td><span>5</span></td>
-								<td><span>6</span></td>
-								<td><span>7</span></td>
-							</tr>
-							<tr>
-								<td><span>8</span></td>
-								<td><span>9</span></td>
-								<td><span>10</span></td>
-								<td><span>11</span></td>
-								<td><span>12</span></td>
-								<td><span>13</span></td>
-								<td><span>14</span></td>
-							</tr>
-							<tr>
-								<td><span>15</span></td>
-								<td><span>16</span></td>
-								<td><span>17</span></td>
-								<td><span>18</span></td>
-								<td><span>19</span></td>
-								<td><span>20</span></td>
-								<td><span>21</span></td>
-							</tr>
-							<tr>
-								<td><span>22</span></td>
-								<td><span>23</span></td>
-								<td><span>24</span></td>
-								<td><span>25</span></td>
-								<td><span>26</span></td>
-								<td><span>27</span></td>
-								<td><span>28</span></td>
-							</tr>
-							<tr>
-								<td><span>29</span></td>
-								<td><span>30</span></td>
-								<td><span>31</span></td>
-							</tr>
-						</tbody>
+						<tbody id="my-table"></tbody>
 					</table>
 				</div>
 			</div>
 			<div class="my-right" style="overflow-y: scroll">
 				<div class="my-content">
-					<h1 class="my-date">Pazar<span>28 Mart</span></h1>
+					<h1 class="my-date">
+						<span class="my-date-day"></span
+						><span class="my-date-date"></span>
+					</h1>
 
 					<div class="my-input-wrapper">
 						<input type="text" placeholder="Not Ekle" />
@@ -123,6 +100,11 @@
 				</div>
 			</div>
 		</div>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
+			integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ=="
+			crossorigin="anonymous"
+		></script>
 		<script src="index.js"></script>
 	</body>
 </html>
