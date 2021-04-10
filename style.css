@@ -7,8 +7,6 @@
 .my-perfect-button {
 	display: inline-block;
 	padding: .7rem 2.5rem;
-	background-color: #fff;
-	color: #333;
 	border-radius: 10rem;
 	cursor: pointer;
 	user-select: none;
@@ -31,8 +29,7 @@
 	height: 100%;
 	width: 100%;
 	display: inline-block;
-	background-color: #fff;
-	color: #333;
+	background-color: #313131;
 	border-radius: 10rem;
 	cursor: pointer;
 	user-select: none;

@@ -14,6 +14,7 @@ const wrapper = document.querySelector('.card-wrapper');
 
 let currEl;
 let todayEl;
+let counterTask = 0;
 
 const monthStrg = now.locale('tr').format('MMMM');
 const dayNumberStr = now.locale('tr').format('DD');
@@ -110,6 +111,7 @@ function month() {
 				myDate.classList.remove('my-animation');
 			}, 1000);
 			wrapper.innerHTML = '';
+			counterTask = 0;
 			const key = `${myDateDate.innerHTML} ${myYear.innerHTML}`.replaceAll(' ', '-'); 
 			const messages = doc[key] ? doc[key].message : [];
 			messages.forEach((message) => createEl(message));
@@ -214,7 +216,7 @@ const createEl = (value = '') => {
             <div
                 class="card-header d-flex justify-content-between align-items-center"
             >
-                <span>Header</span>
+                <span>Not ${(counterTask++) + 1}</span>
                 <span class="btn">
 					<i class="fas fa-trash delete" style="margin-right: .5rem"></i>
                     <i class="fas fa-chevron-down expand"></i>
