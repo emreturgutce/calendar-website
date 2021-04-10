@@ -4,6 +4,50 @@
 	box-sizing: border-box;
 }
 
+.my-perfect-button {
+	display: inline-block;
+	padding: .7rem 2.5rem;
+	background-color: #fff;
+	color: #333;
+	border-radius: 10rem;
+	cursor: pointer;
+	user-select: none;
+	position: relative;
+	transition: all .2s;
+}
+
+.my-perfect-button:hover::after {
+	transform: scaleX(1.5) scaleY(1.5);
+	opacity: 0;
+}
+
+.my-perfect-button::after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	transition: all .4s;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	display: inline-block;
+	background-color: #fff;
+	color: #333;
+	border-radius: 10rem;
+	cursor: pointer;
+	user-select: none;
+}
+
+.my-perfect-button:hover {
+	transform: translateY(-3px);
+	box-shadow: 0px 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.my-perfect-button:active {
+	transform: translateY(-1px);
+	box-shadow: 0px .2rem .5rem rgba(0, 0, 0, 0.5);
+}
+
 body {
 	height: 100vh;
 	font-family: 'Roboto', sans-serif;
@@ -43,10 +87,28 @@ body {
 .my-left .my-month h5 .fa-chevron-right {
 	font-size: 1rem;
 	margin-left: 1.5rem;
+	transition: all 0.2s;
 }
 .my-left .my-month h5 .fa-chevron-left {
 	font-size: 1rem;
 	margin-right: 1.5rem;
+	transition: all 0.2s;
+}
+
+.my-left .my-month h5 .fa-chevron-left:hover {
+	transform: scale(1.2);
+}
+
+.my-left .my-month h5 .fa-chevron-left:active {
+	transform: scale(1);
+}
+
+.my-left .my-month h5 .fa-chevron-right:hover {
+	transform: scale(1.2);
+}
+
+.my-left .my-month h5 .fa-chevron-right:active {
+	transform: scale(1);
 }
 
 .my-right {
@@ -66,8 +128,21 @@ body {
 	font-size: 26px;
 }
 
+.my-animation {
+	animation: opacityAnimation 1s ease-out;
+}
+
 .my-right .my-date span {
 	display: block;
+}
+
+@keyframes opacityAnimation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 .my-right .my-content .my-input-wrapper {
@@ -90,6 +165,54 @@ body {
 	color: #b2d8d8;
 }
 
+.right-to-center {
+	animation: rightToCenterAnimation 1s ease-out;
+}
+
+.top-to-center {
+	animation: topToCenterAnimation 1s ease-out;
+}
+
+@keyframes topToCenterAnimation {
+	0% {
+		transform: translateY(-2rem);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translate(0);
+		opacity: 1;
+	}
+}
+
+@keyframes rightToCenterAnimation {
+	0% {
+		transform: translateX(5rem);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translate(0);
+		opacity: 1;
+	}
+}
+
+.left-to-center {
+	animation: leftToCenterAnimation 1s ease-out;
+}
+
+@keyframes leftToCenterAnimation {
+	0% {
+		transform: translateX(-5rem);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translate(0);
+		opacity: 1;
+	}
+}
+
 table th {
 	padding: 1.3rem 2.5rem;
 	font-size: 16px;
@@ -104,6 +227,7 @@ table td {
 }
 
 table tr td span {
+	position: relative;
 	border-radius: 30%;
 	width: 35px;
 	height: 35px;
@@ -114,10 +238,26 @@ table tr td span {
 	color: #747978;
 	font-weight: bold;
 	font-size: 14px;
+	user-select: none;
+	transition: all 0.2s;
+}
+
+.my-hover {
+	background-color: #74797831;
+	box-shadow: 0px 0.5rem 1rem rgba(0, 0, 0, 0.2);
+	transform: translateY(-3px);
 }
 
 table tr td span:hover {
 	background-color: #74797831;
+	box-shadow: 0px 0.5rem 1rem rgba(0, 0, 0, 0.2);
+	transform: translateY(-3px);
+}
+
+table tr td span:active {
+	background-color: #74797831;
+	box-shadow: 0px .2rem .5rem rgba(0, 0, 0, 0.2);
+	transform: translateY(-1px);
 }
 
 .card:hover {

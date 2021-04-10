@@ -55,7 +55,7 @@
 				<div class="my-month">
 					<h5>
 						<i class="fas fa-chevron-left prev"></i>
-						<span id="month-name"></span>
+						<span style="display: inline-block; width: 125px" id="month-name"></span>
 						<i class="fas fa-chevron-right next"></i>
 					</h5>
 				</div>
@@ -79,10 +79,13 @@
 			</div>
 			<div class="my-right" style="overflow-y: scroll">
 				<div class="my-content">
-					<h1 class="my-date">
-						<span class="my-date-day"></span
-						><span class="my-date-date"></span>
-					</h1>
+					<div class="d-flex align-items-center justify-content-between">
+						<h1 class="my-date">
+							<span class="my-date-day"></span
+							><span class="my-date-date"></span>
+						</h1>
+						<span onClick="onClickToday()" class="my-perfect-button">Bugüne Ğit</span>
+					</div>
 
 					<div class="my-input-wrapper">
 						<input type="text" placeholder="Not Ekle" />
@@ -95,6 +98,7 @@
 							style="background-color: #557fa9 !important"
 						>
 							<div
+								style="user-select: none"
 								class="card-header d-flex justify-content-between align-items-center"
 							>
 								<span>Grup Üyelerinin İsimleri</span>
