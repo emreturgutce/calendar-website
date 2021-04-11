@@ -1,0 +1,117 @@
+/* Navbar stilleri */
+.navigation__checkbox {
+	display: none;
+}
+.navigation__button {
+	background-color: #fff;
+	height: 70px;
+	width: 70px;
+	position: fixed;
+	top: 60px;
+	left: 60px;
+	border-radius: 50%;
+	z-index: 2000;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	cursor: pointer;
+}
+.navigation__background {
+	height: 60px;
+	width: 60px;
+	border-radius: 50%;
+	position: fixed;
+	top: 65px;
+	left: 65px;
+	background-image: radial-gradient(#28b485, #004c4c);
+	z-index: 1000;
+	transition: transform 0.8s cubic-bezier(0.8, 0, 0.07, 1);
+}
+.navigation__nav {
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1500;
+	opacity: 0;
+	width: 0;
+	transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.navigation__list {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	list-style: none;
+	text-align: center;
+	width: 100%;
+}
+.navigation__item {
+	margin: 10px;
+}
+.navigation__link:link,
+.navigation__link:visited {
+	display: inline-block;
+	font-size: 30px;
+	font-weight: 300;
+	color: #fff;
+	padding: 10px 20px;
+	text-decoration: none;
+	text-transform: uppercase;
+	background-image: linear-gradient(
+		120deg,
+		transparent 0%,
+		transparent 50%,
+		#fff 50%
+	);
+	background-size: 225%;
+	transition: all 0.4s;
+}
+.navigation__link:link span,
+.navigation__link:visited span {
+	margin-right: 15px;
+	display: inline-block;
+}
+.navigation__link:hover,
+.navigation__link:active {
+	background-position: 100%;
+	color: #28b485;
+	transform: translateX(10px);
+}
+.navigation__checkbox:checked ~ .navigation__background {
+	transform: scale(80);
+}
+.navigation__checkbox:checked ~ .navigation__nav {
+	opacity: 1;
+	width: 100%;
+}
+.navigation__icon {
+	position: relative;
+	margin-top: 35px;
+}
+.navigation__icon,
+.navigation__icon::before,
+.navigation__icon::after {
+	width: 30px;
+	height: 2px;
+	background-color: #333;
+	display: inline-block;
+}
+.navigation__icon::before,
+.navigation__icon::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	transition: all 0.2s;
+}
+.navigation__icon::before {
+	top: -8px;
+}
+.navigation__icon::after {
+	top: 8px;
+}
+.navigation__button:hover .navigation__icon::before {
+	top: -10px;
+}
+.navigation__button:hover .navigation__icon::after {
+	top: 10px;
+}

@@ -1,0 +1,65 @@
+/* Animasyonlar */
+.my-animation {
+	animation: opacityAnimation 1s ease-out;
+}
+
+.my-right .my-date span {
+	display: block;
+}
+
+@keyframes opacityAnimation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.right-to-center {
+	animation: rightToCenterAnimation 1s ease-out;
+}
+
+.top-to-center {
+	animation: topToCenterAnimation 1s ease-out;
+}
+
+@keyframes topToCenterAnimation {
+	0% {
+		transform: translateY(-2rem);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translate(0);
+		opacity: 1;
+	}
+}
+
+@keyframes rightToCenterAnimation {
+	0% {
+		transform: translateX(5rem);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translate(0);
+		opacity: 1;
+	}
+}
+
+.left-to-center {
+	animation: leftToCenterAnimation 1s ease-out;
+}
+
+@keyframes leftToCenterAnimation {
+	0% {
+		transform: translateX(-5rem);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translate(0);
+		opacity: 1;
+	}
+}

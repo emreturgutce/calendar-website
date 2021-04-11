@@ -4,8 +4,12 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="shortcut icon" href="/favicon.ico"/>
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<!-- STYLES -->
 		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="navigation.css" />
+		<link rel="stylesheet" href="footer.css" />
+		<link rel="stylesheet" href="animation.css" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
@@ -19,6 +23,7 @@
 			rel="stylesheet"
 			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 		/>
+		<!-- STYLES -->
 		<script
 			async
 			src="https://www.googletagmanager.com/gtag/js?id=G-FTCQSFRS0Q"
@@ -35,7 +40,46 @@
 		<title>Perfect Notes</title>
 	</head>
 	<body>
+		<!-- NAVBAR -->
+		<div class="navigation">
+			<input
+				type="checkbox"
+				class="navigation__checkbox"
+				id="navi-toggle"
+			/>
+			<label for="navi-toggle" class="navigation__button">
+				<span class="navigation__icon">&nbsp;</span>
+			</label>
+			<div class="navigation__background">&nbsp;</div>
+			<nav class="navigation__nav">
+				<ul class="navigation__list">
+					<li class="navigation__item">
+						<a href="#" class="navigation__link">Takvim</a>
+					</li>
+					<li class="navigation__item">
+						<a href="#" class="navigation__link">Notların</a>
+					</li>
+					<li class="navigation__item">
+						<a href="#" class="navigation__link"
+							>Bugünkü Etkinliklerin</a
+						>
+					</li>
+					<li class="navigation__item">
+						<a href="#" class="navigation__link">Yapacaklarımız</a>
+					</li>
+					<li class="navigation__item">
+						<a href="#footer" class="navigation__link"
+							>Hakkımızda</a
+						>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<!-- NAVBAR -->
+
+		<!-- BODY -->
 		<div class="my-container">
+			<!-- Takvim -->
 			<div class="my-left">
 				<div
 					style="
@@ -56,7 +100,10 @@
 				<div class="my-month">
 					<h5>
 						<i class="fas fa-chevron-left prev"></i>
-						<span style="display: inline-block; width: 125px" id="month-name"></span>
+						<span
+							style="display: inline-block; width: 125px"
+							id="month-name"
+						></span>
 						<i class="fas fa-chevron-right next"></i>
 					</h5>
 				</div>
@@ -78,46 +125,118 @@
 					</table>
 				</div>
 			</div>
+			<!-- Takvim -->
+
+			<!-- Notlar -->
 			<div class="my-right" style="overflow-y: scroll">
 				<div class="my-content">
-					<div class="d-flex align-items-center justify-content-between">
+					<div
+						class="d-flex align-items-center justify-content-between"
+					>
 						<h1 class="my-date">
 							<span class="my-date-day"></span
 							><span class="my-date-date"></span>
 						</h1>
-						<button style="border-radius: 15px; padding: .7rem 1.5rem; align-self: flex-start; background-color: #313131 !important; border: none" class="btn btn-success my-perfect-button" onClick="onClickToday()">Bugüne Git</button>
+						<button
+							style="
+								border-radius: 15px;
+								padding: 0.7rem 1.5rem;
+								align-self: flex-start;
+								background-color: #313131 !important;
+								border: none;
+							"
+							class="btn btn-success my-perfect-button"
+							onClick="onClickToday()"
+						>
+							Bugüne Git
+						</button>
 					</div>
 
 					<div class="my-input-wrapper">
-						<input type="text" placeholder="Not Ekle" />
+						<input
+							class="text-input"
+							type="text"
+							placeholder="Not Ekle"
+						/>
 					</div>
 
-					<div class="card-wrapper mt-3" style="cursor: pointer">
-						<div
-							id="card-0"
-							class="card text-white bg-primary mb-3"
-							style="background-color: #557fa9 !important"
-						>
-							<div
-								style="user-select: none"
-								class="card-header d-flex justify-content-between align-items-center"
-							>
-								<span>Grup Üyelerinin İsimleri</span>
-								<span class="btn">
-									<i class="fas fa-chevron-down"></i>
-								</span>
-							</div>
-							<div class="card-body">
-								<p class="card-text">
-									Emre Turgut, Muhammet Karadağ, Cihat
-									Yeşildağ, Yusuf Mert Toros
-								</p>
-							</div>
+					<div
+						class="card-wrapper mt-3"
+						style="cursor: pointer"
+					></div>
+				</div>
+			</div>
+			<!-- Notlar -->
+		</div>
+		<!-- BODY -->
+
+		<!-- FOOTER -->
+		<footer class="footer" id="footer">
+			<div class="footer__logo-box">
+				<img src="writing.svg" alt="Full logo" class="footer__logo" />
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-6">
+						<div class="footer__navigation">
+							<ul class="footer__list">
+								<li class="footer__item">
+									<a href="#" class="footer__link">Company</a>
+								</li>
+								<li class="footer__item">
+									<a href="#" class="footer__link"
+										>Contact us</a
+									>
+								</li>
+								<li class="footer__item">
+									<a href="#" class="footer__link">Carrers</a>
+								</li>
+								<li class="footer__item">
+									<a href="#" class="footer__link"
+										>Privacy policy</a
+									>
+								</li>
+								<li class="footer__item">
+									<a href="#" class="footer__link">Terms</a>
+								</li>
+							</ul>
 						</div>
+					</div>
+					<div class="col-6">
+						<p class="footer__copyright">
+							Bu websitesi Web Programlama dersi için
+							<a
+								style="text-transform: none"
+								href="https://github.com/emreturgutce"
+								class="footer__link"
+								>Emre Turgut</a
+							>,
+							<a
+								style="text-transform: none"
+								href="https://github.com/ymtoros"
+								class="footer__link"
+								>Yusuf Mert Toros</a
+							>,
+							<a
+								style="text-transform: none"
+								href="https://github.com/cico643"
+								class="footer__link"
+								>Cihat Yeşildağ</a
+							>
+							ve
+							<a
+								style="text-transform: none"
+								href="https://github.com/MkMuhammetKaradag"
+								class="footer__link"
+								>Muhammet Karadağ</a
+							>
+							tarafından vize projesi olarak yapılmıştır.
+						</p>
 					</div>
 				</div>
 			</div>
-		</div>
+		</footer>
+		<!-- FOOTER -->
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
 			integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ=="
