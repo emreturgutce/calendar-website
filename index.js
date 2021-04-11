@@ -1,8 +1,8 @@
 let now = moment();
-let currEl;
-let todayEl;
-let counterTask = 0;
-let id = 1;
+let currEl; // Seçili günü tutar
+let todayEl; // Bugünü tutar
+let counterTask = 0; // Notlara sırayla numara verilmesi için kullanılan değişken
+let id = 1; // Notların id'si
 
 const days = [1, 2, 3, 4, 5, 6, 0];
 /* Not kartlarının renkleri */
@@ -38,6 +38,7 @@ const dayNumberStr = now.locale('tr').format('DD');
 const dayStr = now.locale('tr').format('dddd');
 const notes = {};
 
+// Başlangıçta bugünün tarihini yazdır
 myDateDay.innerHTML = dayStr;
 myDateDate.innerHTML = `${dayNumberStr} ${monthStrg}`;
 
@@ -45,6 +46,7 @@ myDateDate.innerHTML = `${dayNumberStr} ${monthStrg}`;
  * Not kartını oluşturan ve notlar alanına ekleyen fonksiyon.
  */
 const createEl = (value = '') => {
+	// Girilen input'un istediğimiz formatta olduğundan emin oluyoruz.
 	if (input.value.trim().length === 0 && value.length === 0) {
 		input.value = '';
 		return;
@@ -59,11 +61,13 @@ const createEl = (value = '') => {
 		'-',
 	);
 
+	// Girilen input'un aynısı önceden girilen notlar içerisinde bulunuyor mu
 	if (value.length === 0 && notes[key]?.message.includes(input.value)) {
 		input.value = '';
 		return;
 	}
 
+	// Not kartı elementini oluşturuyoruz
 	const el = `
 		<div id=${`card-${id}`} class="top-to-center card text-white bg-primary mb-3" style='user-select: none; background-color: ${
 		colors[Math.floor(Math.random() * colors.length)]
@@ -85,6 +89,7 @@ const createEl = (value = '') => {
         </div>
     `;
 
+	// Oluşturduğumuz kartı notlar alanı içerisine ekliyoruz
 	wrapper.insertAdjacentHTML('beforeend', el);
 
 	if (value.length === 0) {
@@ -93,8 +98,10 @@ const createEl = (value = '') => {
 		};
 	}
 
+	// İnput alanını sıfırlıyoruz
 	input.value = '';
 
+	// Kart içerisinde bulunan silme ve genişletme butonlarına gerekli event listener'ları ekliyoruz
 	const card = document.querySelector(`#card-${id}`);
 	const cardExpand = document.querySelector(`#card-${id} .expand`);
 	const cardDelete = document.querySelector(`#card-${id} .delete`);
@@ -109,6 +116,7 @@ const createEl = (value = '') => {
 	});
 
 	cardDelete.addEventListener('click', () => {
+		// Silme butonuna tıklandığında notu notlar listesinden çıkar
 		notes[key] = {
 			message: [
 				...notes[key].message.filter(
@@ -124,9 +132,13 @@ const createEl = (value = '') => {
 
 /* Bir önceki aya gitmek istediğinde kullanıcının tıkladığı buton */
 prev.addEventListener('click', () => {
+	// now değişkeni içerisine bir önceki ayı atıyoruz
 	now = now.clone().subtract(1, 'month');
+	// Takvimi yeniliyoruz
 	month();
+	// animasyon class'ını takvime ekliyoruz
 	table.classList.add('left-to-center');
+	// animasyon class'ını kaldırıyoruz
 	setTimeout(() => {
 		table.classList.remove('left-to-center');
 	}, 500);
@@ -134,9 +146,13 @@ prev.addEventListener('click', () => {
 
 /* Bir sonraki aya gitmek istediğinde kullanıcının tıkladığı buton */
 next.addEventListener('click', () => {
+	// now değişkeni içerisine bir sonraki ayı atıyoruz
 	now = now.clone().add(1, 'month');
+	// Takvimi yeniliyoruz
 	month();
+	// animasyon class'ını takvime ekliyoruz
 	table.classList.add('right-to-center');
+	// animasyon class'ını kaldırıyoruz
 	setTimeout(() => {
 		table.classList.remove('right-to-center');
 	}, 500);
@@ -149,6 +165,7 @@ input.addEventListener('keydown', (e) => {
 	}
 });
 
+/* Sayfa ilk yüklendiğinde takvimdeki bugün tarihi üzerinde hover efekti oluşturur */
 document.querySelectorAll('.daysOfMonth').forEach((el) => {
 	if (myDateDate.innerHTML.split(' ')[0] === el.innerHTML) {
 		currEl = el;
@@ -157,6 +174,7 @@ document.querySelectorAll('.daysOfMonth').forEach((el) => {
 	}
 });
 
+/* Navbar'da herhangi bir linke tıklandıktan sonra navbar'ı kapatır */
 document.querySelectorAll('.navigation__link').forEach((val) => {
 	val.addEventListener('click', () => {
 		nav.click();
@@ -167,7 +185,9 @@ month();
 
 /* Kullanıcı sağ taraftaki "Bugüne git" butonuna tıkladığında çağırılan fonksiyon */
 function onClickToday() {
+	// takvimi yeniler
 	month();
+	// bugüne hover efekti ekler
 	todayEl.classList.add('my-hover');
 	todayEl.click();
 }
@@ -190,6 +210,7 @@ function month() {
 	let counter = 1;
 	let nextCounter = 1;
 
+	// Gerekli ayın günlerini tablonun içerisine ekler
 	for (let i = 0; i < 6; i++) {
 		let myRow = '<tr>';
 		for (let j = 0; j < 7; j++) {
@@ -213,20 +234,26 @@ function month() {
 	monthName.innerHTML = monthStr;
 	myYear.innerHTML = now.format('YYYY');
 
+	// Takvim üzerinden bu ayki herhangi bir güne tıklandığında çağırılan event listener
 	document.querySelectorAll('.daysOfMonth').forEach((el) => {
 		el.addEventListener('click', (e) => {
+			// Butün hover efeklerini kaldır
 			clearHover();
 			const clickedDay = +e.target.innerHTML;
 			const nowDay = +now.format('DD');
 
+			// Tıklanan günü al ve bazı yazıların içeriğini güncelle
 			myDateDay.innerHTML = now
 				.add(clickedDay - nowDay, 'days')
 				.format('dddd');
 			myDateDate.innerHTML = `${e.target.innerHTML} ${monthStr}`;
+			// Opacity animasyonu class'ını ekle
 			myDate.classList.add('my-animation');
+			// Opacity animasyonu class'ını kaldır
 			setTimeout(() => {
 				myDate.classList.remove('my-animation');
 			}, 1000);
+			// Kart alanının içini boşalt
 			wrapper.innerHTML = '';
 			counterTask = 0;
 			const key = `${myDateDate.innerHTML} ${myYear.innerHTML}`.replaceAll(
@@ -234,12 +261,15 @@ function month() {
 				'-',
 			);
 			const messages = notes[key] ? notes[key].message : [];
+			// Kart alanı içerisine seçilen tarihteki notları ekle
 			messages.forEach((message) => createEl(message));
 			currEl = el;
+			// Sadece tıklanan gün üzerine hover efekti ekle
 			currEl.classList.add('my-hover');
 		});
 	});
 
+	// Takvim üzerinden bir önceki ayki herhangi bir güne tıklandığında çağırılan event listener
 	document.querySelectorAll('.daysOfPreviousMonth').forEach((el) => {
 		el.addEventListener('click', (e) => {
 			prev.click();
@@ -267,6 +297,7 @@ function month() {
 		});
 	});
 
+	// Takvim üzerinden bir sonraki ayki herhangi bir güne tıklandığında çağırılan event listener
 	document.querySelectorAll('.daysOfNextMonth').forEach((el) => {
 		el.addEventListener('click', (e) => {
 			next.click();
