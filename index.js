@@ -165,15 +165,6 @@ input.addEventListener('keydown', (e) => {
 	}
 });
 
-/* Sayfa ilk yüklendiğinde takvimdeki bugün tarihi üzerinde hover efekti oluşturur */
-document.querySelectorAll('.daysOfMonth').forEach((el) => {
-	if (myDateDate.innerHTML.split(' ')[0] === el.innerHTML) {
-		currEl = el;
-		todayEl = el;
-		todayEl.classList.add('my-hover');
-	}
-});
-
 /* Navbar'da herhangi bir linke tıklandıktan sonra navbar'ı kapatır */
 document.querySelectorAll('.navigation__link').forEach((val) => {
 	val.addEventListener('click', () => {
@@ -182,6 +173,15 @@ document.querySelectorAll('.navigation__link').forEach((val) => {
 });
 
 month();
+
+/* Sayfa ilk yüklendiğinde takvimdeki bugün tarihi üzerinde hover efekti oluşturur */
+document.querySelectorAll('.daysOfMonth').forEach((el) => {
+	if (myDateDate.innerHTML.split(' ')[0] === el.innerHTML) {
+		currEl = el;
+		todayEl = el;
+		todayEl.classList.add('my-hover');
+	}
+});
 
 /* Kullanıcı sağ taraftaki "Bugüne git" butonuna tıkladığında çağırılan fonksiyon */
 function onClickToday() {
